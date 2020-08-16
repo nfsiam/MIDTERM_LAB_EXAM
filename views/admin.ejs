@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/jquery.min.js"></script>
     <title>Admin</title>
 </head>
 <style>
@@ -34,7 +35,12 @@
     <br>
     <br>
     <div>
-        <table style="width: 600px;">
+        <label for="sbox">search employee</label><input type="text" placeholder="search employee here..." id="sbox">
+    </div>
+    <br>
+    <br>
+    <div>
+        <table style="width: 600px;" id="list">
             <% for(var i=0; i<emplist.length; i++) { %>
 
             <tr>
@@ -67,7 +73,35 @@
         </table>
     </div>
 
+    <script>
+        $('#sbox').keyup(function () {
+            // console.log($(this).val());
+            $.ajax({
+                url: '/Admin/search',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    key: $(this).val(),
+                },
+                success: function (data) {
+                    if ('emplist' in data) {
+                        let htx = '';
+                        for (let i = 0; i < data.emplist.length; i++) {
+                            htx += "<tr><td>EmpID</td><td>" + data.emplist[i].EmpID + "</td></tr>";
+                            htx += "<tr><td>username</td><td>" + data.emplist[i].username + "</td></tr>";
+                            htx += "<tr><td>password</td><td>" + data.emplist[i].password + "</td></tr>";
+                            htx += "<tr><td>Name</td><td>" + data.emplist[i].Name + "</td></tr>";
+                            htx += "<tr><td>Phone</td><td>" + data.emplist[i].Phone + "</td></tr>";
+                            htx += "<tr><td><a href='/Admin/UpdateEmployee/" + data.emplist[i].EmpID + "'>Update</a></td>";
+                            htx += "<td><a href='/Admin/DeleteEmployee/" + data.emplist[i].EmpID + "'>Delete</a></td></tr>";
+                        }
+                        $('#list').html(htx);
+                    }
+                },
+            });
 
+        });
+    </script>
 </body>
 
 </html>

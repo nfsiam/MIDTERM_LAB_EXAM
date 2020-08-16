@@ -2,6 +2,17 @@ var db = require('./db');
 
 module.exports = {
 
+	search: function (key, callback) {
+		key = '%' + key + '%';
+		var sql = "select employee.EmpID, employee.username,employee.Name, user.password, employee.Phone FROM employee inner join user on employee.username = user.username where employee.EmpID like ? or employee.Name like ? or user.username like ?";
+		db.getResults(sql, [key, key, key], function (result) {
+			if (result.length > 0) {
+				callback(result);
+			} else {
+				callback(false);
+			}
+		});
+	},
 	get: function (id, callback) {
 		var sql = "select employee.EmpID, employee.username,employee.Name, user.password, employee.Phone FROM employee inner join user on employee.username = user.username where employee.EmpID = ?";
 		db.getResults(sql, [id], function (result) {

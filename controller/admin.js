@@ -134,4 +134,15 @@ router.post('/DeleteEmployee/:id', function (req, res) {
 });
 
 
+router.post('/search', function (req, res) {
+    console.log(req.body);
+    userModel.search(req.body.key, (result) => {
+        console.log(result);
+        res.json({
+            emplist: result
+        })
+    });
+});
+
+
 module.exports = router;
