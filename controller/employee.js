@@ -110,24 +110,23 @@ router.post('/UpdateProduct/:id', (req, res) => {
 
 router.get('/DeleteProduct/:id', function (req, res) {
     var data = {
-        username: req.cookies['logAdmin'],
+        username: req.cookies['logEmployee'],
         errNull: '',
     }
-    userModel.get(req.params.id, function (result) {
-        data["user"] = result;
-        res.render('delemp', data);
+    productModel.get(req.params.id, function (result) {
+        data["product"] = result;
+        res.render('deleteproduct', data);
     });
 
 });
 
 router.post('/DeleteProduct/:id', function (req, res) {
 
-    userModel.delete(req.body.username, function (status) {
+    productModel.delete(req.body.id, function (status) {
         if (status) {
-            // console.log('kkkk');
-            res.redirect('/Admin');
+            res.redirect('/Employee');
         } else {
-            res.redirect('/DeleteEmployee/' + req.params.id);
+            res.redirect('/DeleteProduct/' + req.params.id);
         }
     });
 });

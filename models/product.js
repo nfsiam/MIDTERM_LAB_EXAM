@@ -46,19 +46,11 @@ module.exports = {
         });
     },
 
-    delete: function (username, callback) {
-        var sql = "DELETE FROM `user` WHERE username=?";
-        db.execute(sql, [username], function (status) {
+    delete: function (id, callback) {
+        var sql = "DELETE FROM `product` WHERE id=?";
+        db.execute(sql, [id], function (status) {
             if (status) {
-                var sql2 = "delete from employee where username=?";
-                db.execute(sql2, [username], function (status) {
-                    if (status) {
-                        // console.log('deleted');
-                        callback(true);
-                    } else {
-                        callback(false);
-                    }
-                });
+                callback(true);
             } else {
                 callback(false);
             }
