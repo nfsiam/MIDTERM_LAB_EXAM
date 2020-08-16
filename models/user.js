@@ -3,12 +3,12 @@ var db = require('./db');
 module.exports = {
 
 	get: function (id, callback) {
-		var sql = "select * from user where id=?";
+		var sql = "select employee.EmpID, employee.username,employee.Name, user.password, employee.Phone FROM employee inner join user on employee.username = user.username where employee.EmpID = ?";
 		db.getResults(sql, [id], function (result) {
 			if (result.length > 0) {
 				callback(result[0]);
 			} else {
-				callback([]);
+				callback(false);
 			}
 		});
 	},
@@ -64,10 +64,17 @@ module.exports = {
 	},
 
 	update: function (user, callback) {
-		var sql = "update user set username=?, password=?, type=? where id=?";
-		db.execute(sql, [user.uname, user.password, user.type, user.id], function (status) {
+		var sql = `UPDATE user SET username=?, password=? where username=?`;
+		db.execute(sql, [user.username, user.password, user.username], function (status) {
 			if (status) {
-				callback(true);
+				var sql2 = "update employee set username=?, Name=?, Phone=? where EmpID=?";
+				db.execute(sql2, [user.username, user.Name, user.Phone, user.EmpID], function (status) {
+					if (status) {
+						callback(true);
+					} else {
+						callback(false);
+					}
+				});
 			} else {
 				callback(false);
 			}

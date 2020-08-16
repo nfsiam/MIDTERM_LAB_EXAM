@@ -34,7 +34,7 @@
     <br>
     <br>
     <div>
-        <table>
+        <table style="width: 600px;">
             <% for(var i=0; i<emplist.length; i++) { %>
 
             <tr>
@@ -58,8 +58,8 @@
                 <td><%=emplist[i].Phone%></td>
             </tr>
             <tr>
-                <td><a href="/Admin/Update/<%=i%>">Update</a></td>
-                <td><a href="/Admin/Delete/<%=i%>">Delete</a></td>
+                <td><a href="/Admin/UpdateEmployee/<%=emplist[i].EmpID%>">Update</a></td>
+                <td><a href="/Admin/DeleteEmployee/<%=emplist[i].EmpID%>">Delete</a></td>
             </tr>
 
             <% } %>
