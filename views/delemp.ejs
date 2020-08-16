@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome <%=username %></h1>
+        <a href="/Admin">Dashboard</a>
+        <a href="/Logout">logout</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h4>Delete Employee</h4>
+
+        <form method="post">
+            <table border="1">
+                <tr>
+                    <td>Username</td>
+                    <td><%= user.username %></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><%= user.Name %></td>
+                </tr>
+            </table>
+            <h5>Click confirm to deete</h5>
+            <input type="hidden" name="username" value="<%= user.username %>">
+            <input type="submit" name="submit" value="confirm">
+        </form>
+    </div>
+</body>
+
+</html>

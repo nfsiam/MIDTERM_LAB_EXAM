@@ -58,9 +58,12 @@ module.exports = {
 
 			if (params != null) {
 				connection.query(sql, params, function (error, results) {
+					// console.log(sql, params);
+
 					if (error) {
 						callback(false);
 					} else {
+						console.log(results);
 						callback(true);
 					}
 				});

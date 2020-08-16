@@ -108,4 +108,30 @@ router.post('/UpdateEmployee/:id', (req, res) => {
 });
 
 
+
+router.get('/DeleteEmployee/:id', function (req, res) {
+    var data = {
+        username: req.cookies['logAdmin'],
+        errNull: '',
+    }
+    userModel.get(req.params.id, function (result) {
+        data["user"] = result;
+        res.render('delemp', data);
+    });
+
+});
+
+router.post('/DeleteEmployee/:id', function (req, res) {
+
+    userModel.delete(req.body.username, function (status) {
+        if (status) {
+            // console.log('kkkk');
+            res.redirect('/Admin');
+        } else {
+            res.redirect('/DeleteEmployee/' + req.params.id);
+        }
+    });
+});
+
+
 module.exports = router;

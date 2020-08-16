@@ -81,11 +81,19 @@ module.exports = {
 		});
 	},
 
-	delete: function (id, callback) {
-		var sql = "delete from user where id=?";
-		db.execute(sql, [id], function (status) {
+	delete: function (username, callback) {
+		var sql = "DELETE FROM `user` WHERE username=?";
+		db.execute(sql, [username], function (status) {
 			if (status) {
-				callback(true);
+				var sql2 = "delete from employee where username=?";
+				db.execute(sql2, [username], function (status) {
+					if (status) {
+						// console.log('deleted');
+						callback(true);
+					} else {
+						callback(false);
+					}
+				});
 			} else {
 				callback(false);
 			}
