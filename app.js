@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var login = require('./controller/login');
 var admin = require('./controller/admin');
 var logout = require('./controller/logout');
+var employee = require('./controller/employee');
+
 
 var app = express();
 
@@ -19,6 +21,8 @@ app.use(cookieParser());
 app.use('/Login', login);
 app.use('/Admin', admin);
 app.use('/Logout', logout);
+app.use('/Employee', employee);
+
 
 
 //SERVER STARTUP

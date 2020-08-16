@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+
+    <div>
+        <h1>Welcome <%=username %></h1>
+        <a href="/Logout">logout</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <a href="Employee/AddProduct">Add Product</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <table style="width: 600px;">
+            <% for(var i=0; i<plist.length; i++) { %>
+
+            <tr>
+                <td>product id</td>
+                <td><%=plist[i].id%></td>
+            </tr>
+            <tr>
+                <td>product name</td>
+                <td><%=plist[i].name%></td>
+            </tr>
+            <tr>
+                <td>product quantity</td>
+                <td><%=plist[i].quantity%></td>
+            </tr>
+            <tr>
+                <td><a href="/Admin/UpdateProcuct/<%=plist[i].id%>">Update</a></td>
+                <td><a href="/Admin/DeleteProcuct/<%=plist[i].id%>">Delete</a></td>
+            </tr>
+
+            <% } %>
+
+        </table>
+    </div>
+
+
+</body>
+
+</html>

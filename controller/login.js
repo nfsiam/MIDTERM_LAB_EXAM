@@ -19,8 +19,8 @@ router.post('/', (req, res) => {
         } else if (status == 'admin') {
             res.cookie('logAdmin', req.body.username);
             res.redirect('/Admin');
-        } else if (status == 'user') {
-            res.cookie('logUser', req.body.username);
+        } else if (status == 'employee') {
+            res.cookie('logEmployee', req.body.username);
             res.redirect('/Employee');
         }
     });
