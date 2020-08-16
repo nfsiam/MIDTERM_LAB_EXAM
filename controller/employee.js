@@ -131,5 +131,15 @@ router.post('/DeleteProduct/:id', function (req, res) {
     });
 });
 
+router.post('/search', function (req, res) {
+    console.log(req.body);
+    productModel.search(req.body.key, (result) => {
+        console.log(result);
+        res.json({
+            plist: result
+        })
+    });
+});
+
 
 module.exports = router;

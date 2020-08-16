@@ -2,6 +2,17 @@ var db = require('./db');
 
 module.exports = {
 
+    search: function (key, callback) {
+        key = '%' + key + '%';
+        var sql = "select * from product where id like ? or name like ?";
+        db.getResults(sql, [key, key], function (result) {
+            if (result.length > 0) {
+                callback(result);
+            } else {
+                callback(false);
+            }
+        });
+    },
     get: function (id, callback) {
         var sql = "select * from product where id =?";
         db.getResults(sql, [id], function (result) {
