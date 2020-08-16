@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+
+    <div>
+        <h1>Welcome <%=username %></h1>
+        <a href="/Logout">logout</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <a href="Admin/AddEmployee">Add Employee</a>
+        <br>
+        <a href="Admin/AllEmployeeList">ALLEmpList</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <table>
+            <% for(var i=0; i<emplist.length; i++) { %>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>EmpID</td>
+                            <td><%=emplist[i].EmpID%></td>
+                        </tr>
+                        <tr>
+                            <td>username</td>
+                            <td><%=emplist[i].username%></td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td><%=emplist[i].password%></td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><%=emplist[i].Name%></td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td><%=emplist[i].Phone%></td>
+                        </tr>
+                        <tr>
+                            <td><a href="/Admin/Update/<%=i%>">Update</a></td>
+                            <td><a href="/Admin/Delete/<%=i%>">Delete</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <% } %>
+
+        </table>
+    </div>
+
+
+</body>
+
+</html>
