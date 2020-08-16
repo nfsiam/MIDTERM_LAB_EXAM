@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome <%=username %></h1>
+        <a href="/Employee">Dashboard</a>
+        <a href="/Logout">logout</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <form method="post">
+            <fieldset>
+                <legend>Add New Employee</legend>
+                <table>
+                    <tr>
+                        <td>product id</td>
+                        <td><input type="text" name="id" value="<%=product.id%>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>product name</td>
+                        <td><input type="text" name="name" value="<%=product.name%>"></td>
+                    </tr>
+                    <tr>
+                        <td>quantity</td>
+                        <td><input type="text" name="quantity" value="<%=product.quantity%>"></td>
+                    </tr>
+                    <tr>
+                        <td>price</td>
+                        <td><input type="number" name="price" value="<%=product.price%>"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" name="AddEmployee" value="Update Product"></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

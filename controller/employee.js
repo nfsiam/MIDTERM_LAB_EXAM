@@ -64,42 +64,41 @@ router.post('/AddProduct', (req, res) => {
 
 router.get('/UpdateProduct/:id', (req, res) => {
     var data = {
-        username: req.cookies['logAdmin'],
+        username: req.cookies['logEmployee'],
         errNull: '',
     }
-    const EmpID = req.params.id;
-    userModel.get(EmpID, (result) => {
+    productModel.get(req.params.id, (result) => {
         if (!result) {
             res.send("can not get");
         } else {
-            data["user"] = result;
+            data["product"] = result;
             console.log(result);
-            res.render('upemp', data);
+            res.render('updateproduct', data);
         }
     });
-
 });
+
 router.post('/UpdateProduct/:id', (req, res) => {
     // console.log(req.body);
     var data = {
-        username: req.cookies['logAdmin'],
+        username: req.cookies['logEmployee'],
         errNull: '',
-        user: req.body
+        product: req.body
 
     }
     var errflag = false;
 
-    if (req.body.username == '' || req.body.password == '' || req.body.Name == '' || req.body.Phone == '' || req.body.Gender == '' || req.body.Designation == '') {
+    if (req.body.name == '' || req.body.quantity == '' || req.body.price == '') {
         data.errNull = 'Please fill all fields';
         errflag = true;
     }
 
     if (errflag) {
-        res.render('addemp', data);
+        res.render('updateproduct', data);
     } else {
-        userModel.update(req.body, function (status) {
+        productModel.update(req.body, function (status) {
             if (status) {
-                res.redirect('/Admin');
+                res.redirect('/Employee');
             } else {
                 res.send('wrong!')
             }

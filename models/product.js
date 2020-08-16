@@ -35,18 +35,11 @@ module.exports = {
         });
     },
 
-    update: function (user, callback) {
-        var sql = `UPDATE user SET username=?, password=? where username=?`;
-        db.execute(sql, [user.username, user.password, user.username], function (status) {
+    update: function (product, callback) {
+        var sql = `UPDATE product SET name=?, quantity=?, price=? where id=?`;
+        db.execute(sql, [product.name, product.quantity, product.price, product.id], function (status) {
             if (status) {
-                var sql2 = "update employee set username=?, Name=?, Phone=? where EmpID=?";
-                db.execute(sql2, [user.username, user.Name, user.Phone, user.EmpID], function (status) {
-                    if (status) {
-                        callback(true);
-                    } else {
-                        callback(false);
-                    }
-                });
+                callback(true);
             } else {
                 callback(false);
             }
