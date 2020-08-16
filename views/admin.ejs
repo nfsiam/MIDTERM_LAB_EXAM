@@ -36,36 +36,32 @@
     <div>
         <table>
             <% for(var i=0; i<emplist.length; i++) { %>
+
             <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>EmpID</td>
-                            <td><%=emplist[i].EmpID%></td>
-                        </tr>
-                        <tr>
-                            <td>username</td>
-                            <td><%=emplist[i].username%></td>
-                        </tr>
-                        <tr>
-                            <td>password</td>
-                            <td><%=emplist[i].password%></td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td><%=emplist[i].Name%></td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td><%=emplist[i].Phone%></td>
-                        </tr>
-                        <tr>
-                            <td><a href="/Admin/Update/<%=i%>">Update</a></td>
-                            <td><a href="/Admin/Delete/<%=i%>">Delete</a></td>
-                        </tr>
-                    </table>
-                </td>
+                <td>EmpID</td>
+                <td><%=emplist[i].EmpID%></td>
             </tr>
+            <tr>
+                <td>username</td>
+                <td><%=emplist[i].username%></td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td><%=emplist[i].password%></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><%=emplist[i].Name%></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><%=emplist[i].Phone%></td>
+            </tr>
+            <tr>
+                <td><a href="/Admin/Update/<%=i%>">Update</a></td>
+                <td><a href="/Admin/Delete/<%=i%>">Delete</a></td>
+            </tr>
+
             <% } %>
 
         </table>

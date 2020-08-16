@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome <%=username %></h1>
+        <a href="/Admin">Dashboard</a>
+        <a href="/Logout">logout</a>
+    </div>
+    <br>
+    <br>
+    <div>
+        <form method="post">
+            <fieldset>
+                <legend>Add New Employee</legend>
+                <table>
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" name="Name"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><input type="text" name="Phone"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="color: red;"><%=errNull%></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><input type="submit" name="AddEmployee" value="Add Employee"></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

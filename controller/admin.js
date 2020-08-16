@@ -27,7 +27,40 @@ router.post('/', (req, res) => {
     res.render('posted');
 });
 
+router.get('/AddEmployee', (req, res) => {
+    var data = {
+        username: req.cookies['logAdmin'],
+        errNull: '',
+    }
+    res.render('addemp', data);
 
+});
+
+router.post('/AddEmployee', (req, res) => {
+    console.log(req.body);
+    var data = {
+        username: req.cookies['logAdmin'],
+        errNull: ''
+    }
+    var errflag = false;
+
+    if (req.body.username == '' || req.body.password == '' || req.body.Name == '' || req.body.Phone == '' || req.body.Gender == '' || req.body.Designation == '') {
+        data.errNull = 'Please fill all fields';
+        errflag = true;
+    }
+
+    if (errflag) {
+        res.render('addemp', data);
+    } else {
+        userModel.insert(req.body, function (status) {
+            if (status) {
+                res.redirect('/Admin');
+            } else {
+                res.send('wrong!')
+            }
+        });
+    }
+});
 
 
 module.exports = router;

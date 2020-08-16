@@ -47,25 +47,16 @@ module.exports = {
 
 	insert: function (user, callback) {
 		var sql = "insert into user values(?, ?, ?, ?)";
-		var sql2 = "insert into employee values(?, ?, ?, ?,?, ?)";
-
 		db.execute(sql, ['', user.username, user.password, 'employee'], function (status) {
 			if (status) {
-				db.execute(sql2, ['', user.Name, user.Phone, user.Gender, user.Designation, user.username], function (status) {
+				var sql2 = "insert into employee values('', ?, ?,'','',?)";
+				db.execute(sql2, [user.Name, user.Phone, user.username], function (status) {
 					if (status) {
 						callback(true);
 					} else {
 						callback(false);
 					}
 				});
-			} else {
-				callback(false);
-			}
-		});
-
-		db.execute(sql, ['', user.Name, user.Phone, user.Gender, user.Designation, user.username], function (status) {
-			if (status) {
-				callback(true);
 			} else {
 				callback(false);
 			}
